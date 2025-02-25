@@ -145,6 +145,7 @@ function showScore() {
 
 // Variabili per i controlli touch
 var touchStartX = 0;
+var touchEndX = 0;
 
 // Gestione del touch
 window.addEventListener('touchstart', function (e) {
@@ -152,7 +153,7 @@ window.addEventListener('touchstart', function (e) {
 });
 
 window.addEventListener('touchmove', function (e) {
-    var touchEndX = e.touches[0].clientX; // Ottieni la posizione corrente del touch
+    touchEndX = e.touches[0].clientX; // Ottieni la posizione corrente del touch
     var deltaX = touchEndX - touchStartX; // Calcola la differenza orizzontale
 
     if (deltaX < -20) { // Se il touch si sposta a sinistra
