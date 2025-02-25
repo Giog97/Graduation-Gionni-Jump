@@ -1,11 +1,39 @@
+// Funzione per rilevare se il dispositivo è mobile
+function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+}
+
 var c = document.createElement("canvas");
 var ctx = c.getContext("2d");
 
-var screenWidth = 450; // Mod: da 500 portata a 300
-var screenHeight = 700; // Mod: da 800 portata a 500
+// Dimensioni fisse per il computer
+var fixedWidth = 450; // Larghezza fissa per il computer // Mod: da 500 
+var fixedHeight = 700; // Altezza fissa per il computer // Mod: da 800 
+
+// Imposta le dimensioni del canvas in base al dispositivo
+if (isMobileDevice()) {
+    // Dimensioni dinamiche per i dispositivi mobili
+    var screenWidth = window.innerWidth;
+    var screenHeight = window.innerHeight;
+} else {
+    // Dimensioni fisse per il computer
+    var screenWidth = fixedWidth;
+    var screenHeight = fixedHeight;
+}
+
 c.width = screenWidth;
 c.height = screenHeight;
 document.body.appendChild(c);
+
+// Aggiorna le dimensioni del canvas quando la finestra viene ridimensionata (solo per dispositivi mobili)
+if (isMobileDevice()) {
+    window.addEventListener('resize', function () {
+        screenWidth = window.innerWidth;
+        screenHeight = window.innerHeight;
+        c.width = screenWidth;
+        c.height = screenHeight;
+    });
+}
 
 window.addEventListener('keydown',this.keydown,false);
 window.addEventListener('keyup',this.keyup,false);
@@ -103,6 +131,7 @@ function keyup(e) {
     }
 }
 
+// Funzione per mostrare il punteggio
 function showScore() {
     if (yDistanceTravelled > score) {
         score = Math.round(yDistanceTravelled/100); //mod: dividendo per 100 si fa vedere il numero di blocchi che viene superato
@@ -113,6 +142,35 @@ function showScore() {
     ctx.textAlign = "left";
     ctx.fillText("CFU: " + score, 15, 40);
 }
+
+// Variabili per i controlli touch
+var touchStartX = 0;
+
+// Gestione del touch
+window.addEventListener('touchstart', function (e) {
+    touchStartX = e.touches[0].clientX; // Memorizza la posizione iniziale del touch
+});
+
+window.addEventListener('touchmove', function (e) {
+    var touchEndX = e.touches[0].clientX; // Ottieni la posizione corrente del touch
+    var deltaX = touchEndX - touchStartX; // Calcola la differenza orizzontale
+
+    if (deltaX < -20) { // Se il touch si sposta a sinistra
+        holdingLeftKey = true;
+        holdingRightKey = false;
+    } else if (deltaX > 20) { // Se il touch si sposta a destra
+        holdingRightKey = true;
+        holdingLeftKey = false;
+    } else { // Se il touch non si sposta abbastanza
+        holdingLeftKey = false;
+        holdingRightKey = false;
+    }
+});
+
+window.addEventListener('touchend', function () {
+    holdingLeftKey = false;
+    holdingRightKey = false;
+});
 
 blocks.push(new block);
 blocks[0].x = 300;
