@@ -66,29 +66,29 @@ var interval = 1000/fps;
 var delta;
 
 // CFU da ottenere per potersi laureare
-var graduationBlock = 50; // Numero di blocchi da superare per laurearsi
+var graduationBlock = 30; // Numero di blocchi da superare per laurearsi
 
 // Funzione per visualizzare il messaggio di laurea
 function showGraduationMessage() {
-    ctx.font = "bold 26px Arial";
+    ctx.font = "bold 28px Arial";
     ctx.fillStyle = "green";
     ctx.strokeStyle = "black"; // Colore del contorno
     ctx.lineWidth = 0.8; // Spessore del contorno
     ctx.textAlign = "center";
-    ctx.fillText("Complimenti, ti sei laureato!", screenWidth / 2, screenHeight / 2);
-    ctx.strokeText("Complimenti, ti sei laureato!", screenWidth / 2, screenHeight / 2);
+    ctx.fillText("Complimenti, ti sei laureato!", screenWidth / 2, screenHeight / 2 + 20);
+    ctx.strokeText("Complimenti, ti sei laureato!", screenWidth / 2, screenHeight / 2 + 20);
 
     ctx.font = "20px Arial";
     ctx.fillText("Premi R per ricominciare", screenWidth / 2, (screenHeight / 2) + 50);
 
     // Mostra l'immagine di laurea
     if (graduationImage.complete) {
-        ctx.drawImage(graduationImage, screenWidth / 2 - 36, screenHeight / 2 - 250, 87, 220); // Regola le dimensioni e la posizione
+        ctx.drawImage(graduationImage, screenWidth / 2 - 36, screenHeight / 2 - 340, 130, 320); // Regola le dimensioni e la posizione
     }
 
     // Mostra l'immagine di laurea 2
     if (graduationImage2.complete) {
-        ctx.drawImage(graduationImage2, screenWidth / 2 - 100, screenHeight / 2 + 100, 196, 220); // Regola le dimensioni e la posizione
+        ctx.drawImage(graduationImage2, screenWidth / 2 - 150, screenHeight / 2 + 80, 285, 320); // Regola le dimensioni e la posizione
     }
 }
 

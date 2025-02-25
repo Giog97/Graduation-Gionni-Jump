@@ -5,7 +5,8 @@ var player = new function() {
     this.img.src = "Sprites/rightPlayer.png";
     this.width = 40;
     this.height = 90;
-    this.xSpeed = 6.7;
+    this.xSpeed = 6.7; // Velocità di movimento orizzontale fissa
+    //this.xSpeed = screenWidth * 0.02; // Regola la velocità in base alla larghezza dello schermo
     this.ySpeed = 0;
     this.springBootsDurability = 0;
     this.direction = "left";
@@ -27,8 +28,8 @@ var player = new function() {
             ctx.strokeStyle = "black"; // Colore del contorno
             ctx.lineWidth = 0.8; // Spessore del contorno
             ctx.textAlign = "center";
-            ctx.fillText("Hai rinunciato agli studi!", screenWidth / 2, screenHeight / 2); 
-            ctx.strokeText("Hai rinunciato agli studi!", screenWidth / 2, screenHeight / 2);
+            ctx.fillText("Hai rinunciato agli studi!", screenWidth / 2, screenHeight / 2 + 20); 
+            ctx.strokeText("Hai rinunciato agli studi!", screenWidth / 2, screenHeight / 2 + 20);
             ctx.font = "20px Arial";
             ctx.fillText("Premi R per riniziare l'università", screenWidth / 2, (screenHeight / 2) + 50);
         }
