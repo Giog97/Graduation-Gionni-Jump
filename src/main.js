@@ -1,8 +1,8 @@
 var c = document.createElement("canvas");
 var ctx = c.getContext("2d");
 
-var screenWidth = 350; // Mod: da 500 portata a 300
-var screenHeight = 600; // Mod: da 800 portata a 500
+var screenWidth = 450; // Mod: da 500 portata a 300
+var screenHeight = 700; // Mod: da 800 portata a 500
 c.width = screenWidth;
 c.height = screenHeight;
 document.body.appendChild(c);
