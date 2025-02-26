@@ -11,10 +11,28 @@
                 display: block;
                 margin: 0 auto; 
             }
+            /* Stile per il bottone di riavvio */
+            #restartButton {
+                display: none; /* Nascondi il bottone di default */
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 10px 20px;
+                font-size: 16px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
         </style>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
+        <!-- Bottone di riavvio per dispositivi mobili -->
+        <button id="restartButton">Ricomincia</button>
+
         <script src="src/player.js"></script>
         <script src="src/monsters.js"></script>
         <script src="src/block.js"></script>

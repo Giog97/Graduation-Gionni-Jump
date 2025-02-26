@@ -183,6 +183,46 @@ function cleanBlocks() {
     }
 }
 
+// Seleziona il bottone di riavvio
+var restartButton = document.getElementById("restartButton");
+
+// Aggiungi un gestore di eventi al bottone
+restartButton.addEventListener("click", function () {
+    // Esegui la stessa logica del tasto "R"
+    blocks = [];
+    lowestBlock = 0;
+    difficulty = 0;
+    score = 0;
+    yDistanceTravelled = 0;
+    player.springBootsDurability = 0;
+
+    // Resetta la posizione della linea dell'obiettivo
+    goalLineY = -1;
+
+    blocks.push(new block);
+    blocks[0].x = 300;
+    blocks[0].y = 650;
+    blocks[0].monster = 0;
+    blocks[0].type = 0;
+    blocks[0].powerup = 0;
+
+    blockSpawner();
+
+    player.x = 300;
+    player.y = 550;
+
+    dead = false;
+});
+
+// Funzione per mostrare/nascondere il bottone di riavvio
+function toggleRestartButton() {
+    if (dead || yDistanceTravelled >= graduationBlock * 100) {
+        restartButton.style.display = "block"; // Mostra il bottone
+    } else {
+        restartButton.style.display = "none"; // Nascondi il bottone
+    }
+}
+
 // Variabili per i controlli touch
 var touchStartX = 0;
 var touchEndX = 0;
@@ -240,6 +280,7 @@ function loop() {
             dead = true; // Interrompi il gioco
             showGraduationMessage(); // Mostra il messaggio e l'immagine di laurea
             then = now - (delta % interval);
+            toggleRestartButton(); // Mostra il bottone di riavvio
             return; // Esci dalla funzione per interrompere il gioco
         }
 
@@ -274,6 +315,9 @@ function loop() {
 
         ctx.fill();
         then = now - (delta % interval);
+
+        // Mostra/nascondi il bottone di riavvio in base allo stato del gioco
+        toggleRestartButton();
     }
 }
 
