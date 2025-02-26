@@ -107,6 +107,9 @@ function keydown(e) {
         yDistanceTravelled = 0;
         player.springBootsDurability = 0;
 
+        // Resetta la posizione della linea dell'obiettivo
+        goalLineY = -1;
+
         blocks.push(new block);
         blocks[0].x = 300;
         blocks[0].y = 650;
@@ -141,6 +144,43 @@ function showScore() {
     ctx.fillStyle = "black";
     ctx.textAlign = "left";
     ctx.fillText("CFU: " + score, 15, 40);
+}
+
+// Variabile globale per memorizzare la posizione della linea dell'obiettivo
+var goalLineY = -1; // Inizialmente la linea non è visibile
+
+// Funzione per disegnare la linea dell'obiettivo
+function drawGoalLine() {
+    // Calcola la posizione della linea dell'obiettivo
+    if (goalLineY === -1 && yDistanceTravelled >= graduationBlock * 100 * 0.7) {
+        // Fai apparire la linea quando il giocatore ha superato il 70% del percorso
+        goalLineY = blocks[0].y - (graduationBlock * 100); // Posizione iniziale della linea
+    }
+
+    // Se la linea è visibile, disegnala
+    if (goalLineY !== -1) {
+        ctx.strokeStyle = "red"; // Colore della linea
+        ctx.lineWidth = 3; // Spessore della linea
+        ctx.beginPath();
+        ctx.moveTo(0, goalLineY); // Inizia la linea a sinistra
+        ctx.lineTo(screenWidth, goalLineY); // Termina la linea a destra
+        ctx.stroke();
+
+        // Aggiungi un'etichetta di testo sopra la linea
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "red";
+        ctx.textAlign = "center";
+        ctx.fillText("LAUREA: " + graduationBlock + " CFU", screenWidth / 2, goalLineY - 10);
+    }
+}
+
+// Funzione per rimuovere i blocchi che sono oltre la linea rossa
+function cleanBlocks() {
+    for (var i = blocks.length - 1; i >= 0; i--) {
+        if (blocks[i] === 0) {
+            blocks.splice(i, 1); // Rimuove il blocco dall'array
+        }
+    }
 }
 
 // Variabili per i controlli touch
@@ -182,6 +222,7 @@ blocks[0].powerup = 0;
 
 blockSpawner();
 
+// Modifica la funzione loop per disegnare la linea dell'obiettivo
 function loop() {
     requestAnimationFrame(loop);
 
@@ -202,12 +243,29 @@ function loop() {
             return; // Esci dalla funzione per interrompere il gioco
         }
 
+        // Aggiorna la posizione della linea dell'obiettivo
+        if (goalLineY !== -1) {
+            goalLineY = blocks[0].y - (graduationBlock * 100); // Aggiorna la posizione della linea in base ai blocchi
+        }
+
+        // Disegna la linea dell'obiettivo
+        drawGoalLine();
+
+        // Ciclo per disegnare i blocchi
         for (var i = 0; i < blocks.length; i++) {
             if (blocks[i] !== 0) {
+                if (goalLineY !== -1 && blocks[i].y < goalLineY) {
+                    blocks[i] = 0;
+                    continue;
+                }
+
                 blocks[i].update();
                 blocks[i].draw();
             }
         }
+
+        // Pulisci i blocchi rimossi
+        cleanBlocks();
 
         player.update();
         player.draw();
