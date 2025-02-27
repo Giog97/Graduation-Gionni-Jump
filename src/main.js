@@ -66,7 +66,7 @@ var interval = 1000/fps;
 var delta;
 
 // CFU da ottenere per potersi laureare
-var graduationBlock = 30; // Numero di blocchi da superare per laurearsi
+var graduationBlock = 10; // Numero di blocchi da superare per laurearsi
 
 // Funzione per visualizzare il messaggio di laurea
 function showGraduationMessage() {
@@ -75,8 +75,8 @@ function showGraduationMessage() {
     ctx.strokeStyle = "black"; // Colore del contorno
     ctx.lineWidth = 0.8; // Spessore del contorno
     ctx.textAlign = "center";
-    ctx.fillText("Complimenti, ti sei laureato!", screenWidth / 2, screenHeight / 2 + 20);
-    ctx.strokeText("Complimenti, ti sei laureato!", screenWidth / 2, screenHeight / 2 + 20);
+    ctx.fillText("Complimenti, ti sei laureato!", screenWidth / 2, screenHeight / 2);
+    ctx.strokeText("Complimenti, ti sei laureato!", screenWidth / 2, screenHeight / 2);
 
     // Mostra la scritta "Premi R per ricominciare" solo su computer
     if (!isMobileDevice()) {
@@ -222,12 +222,7 @@ function toggleRestartButton() {
     // Il bottone sarà visibile solo su dispositivi mobili
     if (isMobileDevice() && (dead || yDistanceTravelled >= graduationBlock * 100)) {
         restartButton.style.display = "block"; // Mostra il bottone
-
-        if (isMobileDevice()) {
-            restartButton.style.top = "55%"; // Solo la posizione cambia su mobile
-        } else {
-            restartButton.style.bottom = "20px"; // Su PC rimane in basso
-        }
+        restartButton.style.top = "60%"; // Solo la posizione cambia su mobile
     } else {
         restartButton.style.display = "none"; // Nascondi il bottone
     }

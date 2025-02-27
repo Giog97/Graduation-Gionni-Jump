@@ -28,8 +28,8 @@ var player = new function() {
             ctx.strokeStyle = "black"; // Colore del contorno
             ctx.lineWidth = 0.8; // Spessore del contorno
             ctx.textAlign = "center";
-            ctx.fillText("Hai rinunciato agli studi!", screenWidth / 2, screenHeight / 2 + 20); 
-            ctx.strokeText("Hai rinunciato agli studi!", screenWidth / 2, screenHeight / 2 + 20);
+            ctx.fillText("Hai rinunciato agli studi!", screenWidth / 2, screenHeight / 2); 
+            ctx.strokeText("Hai rinunciato agli studi!", screenWidth / 2, screenHeight / 2);
 
 
             // Mostra la scritta "Premi R per riniziare l'università" solo su computer
