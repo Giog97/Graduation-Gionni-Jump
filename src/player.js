@@ -30,8 +30,13 @@ var player = new function() {
             ctx.textAlign = "center";
             ctx.fillText("Hai rinunciato agli studi!", screenWidth / 2, screenHeight / 2 + 20); 
             ctx.strokeText("Hai rinunciato agli studi!", screenWidth / 2, screenHeight / 2 + 20);
-            ctx.font = "20px Arial";
-            ctx.fillText("Premi R per riniziare l'università", screenWidth / 2, (screenHeight / 2) + 50);
+
+
+            // Mostra la scritta "Premi R per riniziare l'università" solo su computer
+            if (!isMobileDevice()) {
+                ctx.font = "20px Arial";
+                ctx.fillText("Premi R per riniziare l'università", screenWidth / 2, (screenHeight / 2) + 50);
+            }
         }
 
         //A key pressed

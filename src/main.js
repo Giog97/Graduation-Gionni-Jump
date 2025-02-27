@@ -78,8 +78,11 @@ function showGraduationMessage() {
     ctx.fillText("Complimenti, ti sei laureato!", screenWidth / 2, screenHeight / 2 + 20);
     ctx.strokeText("Complimenti, ti sei laureato!", screenWidth / 2, screenHeight / 2 + 20);
 
-    ctx.font = "20px Arial";
-    ctx.fillText("Premi R per ricominciare", screenWidth / 2, (screenHeight / 2) + 50);
+    // Mostra la scritta "Premi R per ricominciare" solo su computer
+    if (!isMobileDevice()) {
+        ctx.font = "20px Arial";
+        ctx.fillText("Premi R per ricominciare", screenWidth / 2, (screenHeight / 2) + 50);
+    }
 
     // Mostra l'immagine di laurea
     if (graduationImage.complete) {
