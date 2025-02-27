@@ -12,9 +12,46 @@ canvas {
     background-color: white;
 }
 
-/* Mostra il bottone solo su dispositivi mobili */
+/* Mostra il bottone solo su dispositivi mobili 
 @media only screen and (max-width: 768px) {
     #restartButton {
-        display: block; /* Mostra il bottone */
+        position: absolute;
+        top: 60%;  Posiziona il bottone sotto il testo 
+        left: 50%;
+        transform: translateX(-50%);
+        height: auto;  Assicura che il bottone abbia altezza adeguata 
+        width: auto;  Impedisce che si allarghi troppo 
+        padding: 10px 20px;  Mantiene una dimensione proporzionata 
+        font-size: 16px;  Dimensione del testo 
+        white-space: nowrap;  Impedisce che il testo vada a capo 
+    }
+}*/
+
+#restartButton {
+    display: none; /* Nascondi il bottone di default */
+    position: fixed;
+    width: 120px; /* Larghezza fissa */
+    height: 40px; /* Altezza fissa */
+    padding: 10px 20px; /* Padding coerente */
+    font-size: 16px; /* Dimensione testo */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 22px; /* Mantiene il testo centrato verticalmente */
+}
+
+/* Modifica solo la posizione su mobile */
+@media only screen and (max-width: 768px) {
+    #restartButton {
+        position: absolute;
+        top: 55%; /* Posiziona il bottone sotto il testo */
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
+
+
+

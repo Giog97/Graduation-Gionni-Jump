@@ -1,7 +1,7 @@
 // Funzione per rilevare se il dispositivo è mobile
-function isMobileDevice() {
+window.isMobileDevice = function() {
     return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-}
+};
 
 var c = document.createElement("canvas");
 var ctx = c.getContext("2d");
@@ -219,8 +219,15 @@ restartButton.addEventListener("click", function () {
 
 // Funzione per mostrare/nascondere il bottone di riavvio
 function toggleRestartButton() {
-    if (dead || yDistanceTravelled >= graduationBlock * 100) {
+    // Il bottone sarà visibile solo su dispositivi mobili
+    if (isMobileDevice() && (dead || yDistanceTravelled >= graduationBlock * 100)) {
         restartButton.style.display = "block"; // Mostra il bottone
+
+        if (isMobileDevice()) {
+            restartButton.style.top = "55%"; // Solo la posizione cambia su mobile
+        } else {
+            restartButton.style.bottom = "20px"; // Su PC rimane in basso
+        }
     } else {
         restartButton.style.display = "none"; // Nascondi il bottone
     }
