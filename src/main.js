@@ -3,7 +3,8 @@ window.isMobileDevice = function() {
     return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 };
 
-var c = document.createElement("canvas");
+// Seleziona il canvas e il contesto
+var c = document.getElementById("gameCanvas"); //var c = document.createElement("canvas");
 var ctx = c.getContext("2d");
 
 // Dimensioni fisse per il computer
@@ -23,7 +24,7 @@ if (isMobileDevice()) {
 
 c.width = screenWidth;
 c.height = screenHeight;
-document.body.appendChild(c);
+//document.body.appendChild(c);
 
 // Aggiorna le dimensioni del canvas quando la finestra viene ridimensionata (solo per dispositivi mobili)
 if (isMobileDevice()) {
@@ -34,6 +35,25 @@ if (isMobileDevice()) {
         c.height = screenHeight;
     });
 }
+
+// Gestione del menù
+document.getElementById("startButton").addEventListener("click", function() {
+    document.getElementById("menu").style.display = "none"; // Nasconde il menù
+    document.getElementById("gameCanvas").style.display = "block"; // Mostra il gioco
+    loop(); // Avvia il gioco
+});
+// Gestione del menù 2
+document.getElementById("creditsButton").addEventListener("click", function() {
+    document.getElementById("menu").innerHTML = `
+        <h1>Ringraziamenti</h1>
+        <p>Grazie per aver giocato a Graduation Gionni Jump! Un ringraziamento speciale a tutti coloro che hanno supportato lo sviluppo.</p>
+        <button id="backButton">Torna indietro</button>
+    `;
+
+    document.getElementById("backButton").addEventListener("click", function() {
+        location.reload(); // Ricarica la pagina per tornare al menù
+    });
+});
 
 window.addEventListener('keydown',this.keydown,false);
 window.addEventListener('keyup',this.keyup,false);
@@ -53,8 +73,8 @@ var blocks = [];
 var powerups = [];
 
 // Caricamento immagini me con la corona
-var graduationImage = new Image();
-graduationImage.src = "Sprites/meCoronaPxArt.png"; // Percorso dell'immagine di laurea
+//var graduationImage = new Image();
+//graduationImage.src = "Sprites/meCoronaPxArt.png"; // Percorso dell'immagine di laurea
 var graduationImage2 = new Image();
 graduationImage2.src = "Sprites/meFestaPxArt.png"; // Percorso dell'immagine di laurea
 
@@ -85,9 +105,9 @@ function showGraduationMessage() {
     }
 
     // Mostra l'immagine di laurea
-    if (graduationImage.complete) {
-        ctx.drawImage(graduationImage, screenWidth / 2 - 36, screenHeight / 2 - 340, 130, 320); // Regola le dimensioni e la posizione
-    }
+    //if (graduationImage.complete) {
+    //    ctx.drawImage(graduationImage, screenWidth / 2 - 36, screenHeight / 2 - 340, 130, 320); // Regola le dimensioni e la posizione
+    //}
 
     // Mostra l'immagine di laurea 2
     if (graduationImage2.complete) {

@@ -7,26 +7,14 @@ body {
     background-color: #f0f0f0; /* Sfondo grigio chiaro per visibilità */
 }
 
+/*
 canvas {
     border: 2px solid black;
     background-color: white;
 }
+*/
 
-/* Mostra il bottone solo su dispositivi mobili 
-@media only screen and (max-width: 768px) {
-    #restartButton {
-        position: absolute;
-        top: 60%;  Posiziona il bottone sotto il testo 
-        left: 50%;
-        transform: translateX(-50%);
-        height: auto;  Assicura che il bottone abbia altezza adeguata 
-        width: auto;  Impedisce che si allarghi troppo 
-        padding: 10px 20px;  Mantiene una dimensione proporzionata 
-        font-size: 16px;  Dimensione del testo 
-        white-space: nowrap;  Impedisce che il testo vada a capo 
-    }
-}*/
-
+/* Stili per il bottone di restart */
 #restartButton {
     display: none; /* Nascondi il bottone di default */
     position: fixed;
@@ -51,7 +39,73 @@ canvas {
         left: 50%;
         transform: translateX(-50%);
     }
+
+    #gameContainer {
+        width: 100%; /* Larghezza al 100% dello schermo */
+        height: 100vh; /* Altezza al 100% dello schermo */
+        background-size: contain; /* Mostra l'intera immagine senza ritagli */
+    }
 }
+
+/* Stili per il menu */
+/* Contenitore che include sia il menù che il gioco */
+#gameContainer {
+    border: 2px solid #004180;
+    background-image: url(Sprites/background.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    width: 450px; /* Stessa larghezza del canvas */
+    height: 700px; /* Stessa altezza del canvas */
+    margin: 0 auto; /* Centra il contenitore */
+}
+
+/* Il canvas prende l'intera area del contenitore */
+#gameCanvas {
+    width: 100%;
+    height: 100%;
+    display: none; /* Nasconde il gioco all'inizio */
+}
+
+/* Il menù deve stare dentro il contenitore */
+#menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+}
+
+/* Pulsanti del menù */
+#menu button {
+    width: 200px;
+    padding: 10px;
+    font-size: 18px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Stili per i pulsanti */
+#startButton {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#creditsButton {
+    background-color: #2196F3;
+    color: white;
+}
+
+
 
 
 

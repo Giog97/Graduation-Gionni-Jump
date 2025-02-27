@@ -30,6 +30,20 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
+        <!-- Contenitore per il gioco e il menù -->
+        <div id="gameContainer">
+            <!-- Menù iniziale sopra il canvas -->
+            <div id="menu">
+                <h1>Graduation Gionni Jump</h1>
+                <p>Salta sulle piattaforme e raggiungi la laurea! Evita i pericoli e raccogli i potenziamenti.</p>
+                <button id="startButton">Inizia il gioco</button>
+                <button id="creditsButton">Ringraziamenti</button>
+            </div>
+
+            <!-- Canvas per il gioco -->
+            <canvas id="gameCanvas"></canvas>
+        </div>
+
         <!-- Bottone di riavvio per dispositivi mobili -->
         <button id="restartButton">Ricomincia</button>
 
