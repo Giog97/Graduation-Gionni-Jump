@@ -95,13 +95,18 @@ function showGraduationMessage() {
     ctx.strokeStyle = "black"; // Colore del contorno
     ctx.lineWidth = 0.8; // Spessore del contorno
     ctx.textAlign = "center";
-    ctx.fillText("Complimenti, ti sei laureato!", screenWidth / 2, screenHeight / 2);
-    ctx.strokeText("Complimenti, ti sei laureato!", screenWidth / 2, screenHeight / 2);
+    ctx.fillText("Complimenti, ti sei laureato!", screenWidth / 2, screenHeight / 2 - (screenHeight / 5));
+    ctx.strokeText("Complimenti, ti sei laureato!", screenWidth / 2, screenHeight / 2 - (screenHeight / 5));
 
     // Mostra la scritta "Premi R per ricominciare" solo su computer
     if (!isMobileDevice()) {
+        // Scritta "Premi R per ricominciare"
         ctx.font = "20px Arial";
-        ctx.fillText("Premi R per ricominciare", screenWidth / 2, (screenHeight / 2) + 50);
+        ctx.fillText("Premi R per ricominciare", screenWidth / 2, (screenHeight / 2 - (screenHeight / 5)) + 50);
+
+        // Scritta "Premi M per tornare al menù"
+        ctx.font = "20px Arial";
+        ctx.fillText("Premi M per tornare al menù", screenWidth / 2, (screenHeight / 2 - (screenHeight / 5)) + 100);
     }
 
     // Mostra l'immagine di laurea
@@ -115,14 +120,36 @@ function showGraduationMessage() {
     }
 }
 
+// Funzione per tornare al menù
+function returnToMenu() {
+    // Resetta le variabili del gioco
+    blocks = [];
+    lowestBlock = 0;
+    difficulty = 0;
+    score = 0;
+    yDistanceTravelled = 0;
+    player.springBootsDurability = 0;
+    goalLineY = -1;
+    dead = false;
+
+    // Nasconde il canvas e mostra il menù
+    document.getElementById("gameCanvas").style.display = "none";
+    document.getElementById("menu").style.display = "flex"; // Mostra il menù
+    document.getElementById("restartButton").style.display = "none"; // Nasconde il bottone di riavvio
+    document.getElementById("menuButton").style.display = "none"; // Nasconde il bottone del menù
+
+    // Ricarica il menù iniziale
+    location.reload(); // Ricarica la pagina per tornare al menù iniziale
+}
+
 function keydown(e) {
-    if (e.keyCode === 65) {
+    if (e.keyCode === 65) { // A key
         holdingLeftKey = true;
-    } else if (e.keyCode === 68) {
+    } else if (e.keyCode === 68) { // D key
         holdingRightKey = true;
     }
 
-    if (e.keyCode === 82 && (dead || yDistanceTravelled >= graduationBlock * 100)) {
+    if (e.keyCode === 82 && (dead || yDistanceTravelled >= graduationBlock * 100)) { // R key
         blocks = [];
         lowestBlock = 0;
         difficulty = 0;
@@ -146,6 +173,11 @@ function keydown(e) {
         player.y = 550;
 
         dead = false;
+    }
+
+    // Se il giocatore è morto o ha superato i 300 blocchi, premi il tasto M per tornare al menù
+    if (e.keyCode === 77 && (dead || yDistanceTravelled >= graduationBlock * 100)) { // M key
+        returnToMenu();
     }
 }
 
@@ -237,14 +269,24 @@ restartButton.addEventListener("click", function () {
     dead = false;
 });
 
+// Seleziona il bottone per tornare al menù
+var menuButton = document.getElementById("menuButton");
+
+// Aggiungi un gestore di eventi al bottone
+menuButton.addEventListener("click", function () {
+    returnToMenu();
+});
+
 // Funzione per mostrare/nascondere il bottone di riavvio
 function toggleRestartButton() {
     // Il bottone sarà visibile solo su dispositivi mobili
     if (isMobileDevice() && (dead || yDistanceTravelled >= graduationBlock * 100)) {
         restartButton.style.display = "block"; // Mostra il bottone
-        restartButton.style.top = "60%"; // Solo la posizione cambia su mobile
+        // restartButton.style.top = "60%"; // Solo la posizione cambia su mobile
+        menuButton.style.display = "block"; // Mostra il bottone del menù
     } else {
         restartButton.style.display = "none"; // Nascondi il bottone
+        menuButton.style.display = "none"; // Nasconde il bottone del menù
     }
 }
 

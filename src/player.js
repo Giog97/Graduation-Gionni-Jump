@@ -28,14 +28,19 @@ var player = new function() {
             ctx.strokeStyle = "black"; // Colore del contorno
             ctx.lineWidth = 0.8; // Spessore del contorno
             ctx.textAlign = "center";
-            ctx.fillText("Hai rinunciato agli studi!", screenWidth / 2, screenHeight / 2); 
-            ctx.strokeText("Hai rinunciato agli studi!", screenWidth / 2, screenHeight / 2);
+            ctx.fillText("Hai rinunciato agli studi!", screenWidth / 2, screenHeight / 2 - (screenHeight / 5)); 
+            ctx.strokeText("Hai rinunciato agli studi!", screenWidth / 2, screenHeight / 2 - (screenHeight / 5));
 
 
             // Mostra la scritta "Premi R per riniziare l'università" solo su computer
             if (!isMobileDevice()) {
+                // Scritta "Premi R per riniziare l'università"
                 ctx.font = "20px Arial";
-                ctx.fillText("Premi R per riniziare l'università", screenWidth / 2, (screenHeight / 2) + 50);
+                ctx.fillText("Premi R per riniziare l'università", screenWidth / 2, (screenHeight / 2 - (screenHeight / 5)) + 50);
+
+                // Scritta "Premi M per tornare al menu"
+                ctx.font = "20px Arial";
+                ctx.fillText("Premi M per tornare al menu", screenWidth / 2, (screenHeight / 2 - (screenHeight / 5)) + 100);
             }
         }
 

@@ -24,7 +24,28 @@ canvas {
     font-size: 16px; /* Dimensione testo */
     background-color: #4CAF50;
     color: white;
-    border: none;
+    border: 1px solid #004180;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 22px; /* Mantiene il testo centrato verticalmente */
+    /*text-shadow: -1px -1px 0 #004180,  
+                 1px -1px 0 #004180,  
+                -1px  1px 0 #004180,  
+                 1px  1px 0 #004180;  Contorno blu attorno al testo */
+}
+
+/* Stili per il bottone di menù */
+#menuButton {
+    display: none; /* Nascondi il bottone di default */
+    position: fixed;
+    width: 120px; /* Larghezza fissa */
+    height: 40px; /* Altezza fissa */
+    padding: 10px 20px; /* Padding coerente */
+    font-size: 16px; /* Dimensione testo */
+    background-color: #2196F3; /* Colore diverso per distinguerlo */
+    color: white;
+    border: 1px solid #004180;
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
@@ -34,8 +55,17 @@ canvas {
 /* Modifica solo la posizione su mobile */
 @media only screen and (max-width: 768px) {
     #restartButton {
+        border: 1px solid #004180;
         position: absolute;
-        top: 60%; /* Posiziona il bottone sotto il testo */
+        top: 45%; /* Posiziona il bottone sotto il testo */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #menuButton {
+        border: 1px solid #004180;
+        position: absolute;
+        top: 55%; /* Posiziona il bottone sotto il bottone di riavvio */
         left: 50%;
         transform: translateX(-50%);
     }
@@ -85,22 +115,24 @@ canvas {
 
 /* Pulsanti del menù */
 #menu button {
+    border: 1px solid #004180;
     width: 200px;
     padding: 10px;
     font-size: 18px;
     margin-top: 10px;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 /* Stili per i pulsanti */
 #startButton {
+    border: 1px solid #004180;
     background-color: #4CAF50;
     color: white;
 }
 
 #creditsButton {
+    border: 1px solid #004180;
     background-color: #2196F3;
     color: white;
 }
