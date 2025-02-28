@@ -137,7 +137,18 @@ canvas {
     color: white;
 }
 
-
-
-
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+#title {
+    font-family: 'VT323', monospace; /* Font pixelato alternativo */
+    font-size: 50px;
+    font-weight: bold; /* Testo in grassetto */
+    text-transform: uppercase; /* Maiuscolo */
+    text-align: center; /* Centra il testo */
+    color: #004180; /* blu */
+    text-shadow: 3px 3px 0px #4CAF50, /* Ombra nera */
+                 5px 5px 5px #4CAF50; /* Ombra sfumata */
+    font-family: 'Poppins', sans-serif; /* Font moderno */
+    letter-spacing: 2px; /* Spaziatura tra le lettere */
+    padding: 20px;
+}
 
