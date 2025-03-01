@@ -1,6 +1,12 @@
 var springBootsImage = new Image();
 springBootsImage.src = "Sprites/new_balance_pxArt.png"; // Percorso dell'immagine
 
+var springBootsImagedx = new Image();
+springBootsImagedx.src = "Sprites/playerUpDX.png"; // Percorso dell'immagine
+
+var springBootsImagesx = new Image();
+springBootsImagesx.src = "Sprites/playerUpSX.png"; // Percorso dell'immagine
+
 var player = new function() {
     this.x = 300;
     this.y = 550;
@@ -146,22 +152,24 @@ var player = new function() {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
 
         if (this.springBootsDurability !== 0) {
-            if (this.direction === "right") {
-                // posso caricare la mia immagine con le new balance
-                ctx.fillStyle = "blue";
-                ctx.fillRect(this.x + 10, this.y + 66, 15, 10);
-                ctx.fillRect(this.x + 33, this.y + 66, 15, 10);  
-                ctx.fillStyle = "grey";
-                ctx.fillRect(this.x + 10, this.y + 76, 15, 15);
-                ctx.fillRect(this.x + 33, this.y + 76, 15, 15);
-            } else {
-                // posso caricare la mia immagine con le new balance
-                ctx.fillStyle = "blue";
-                ctx.fillRect(this.x + 30, this.y + 66, 15, 10);
-                ctx.fillRect(this.x + 53, this.y + 66, 15, 10);  
-                ctx.fillStyle = "grey";
-                ctx.fillRect(this.x + 30, this.y + 76, 15, 15);
-                ctx.fillRect(this.x + 53, this.y + 76, 15, 15);
+            // Modificato in modo che il colore di Gionni sia diverso se ha il powerup attivo
+            if (springBootsImagedx.complete && springBootsImagesx.complete) {
+                const imageWidth = this.width; // 40 Larghezza dell'immagine
+                const imageHeight = this.height; // 20 Altezza dell'immagine
+    
+                if (this.direction === "right") {
+                    // Posizione degli stivali a molla quando il giocatore guarda a destra
+                    const imageX = this.x; // Posizione X del primo stivale
+                    const imageY = this.y; // Posizione Y del primo stivale
+    
+                    ctx.drawImage(springBootsImagedx, imageX, imageY, imageWidth, imageHeight);
+                } else {
+                    // Posizione degli stivali a molla quando il giocatore guarda a sinistra
+                    const imageX = this.x; // Posizione X del primo stivale
+                    const imageY = this.y; // Posizione Y del primo stivale
+    
+                    ctx.drawImage(springBootsImagesx, imageX, imageY, imageWidth, imageHeight);
+                }
             }
         }
     }
