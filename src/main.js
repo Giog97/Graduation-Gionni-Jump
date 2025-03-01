@@ -102,11 +102,11 @@ function showGraduationMessage() {
     if (!isMobileDevice()) {
         // Scritta "Premi R per ricominciare"
         ctx.font = "20px Arial";
-        ctx.fillText("Premi R per ricominciare", screenWidth / 2, (screenHeight / 2 - (screenHeight / 5)) + 50);
+        ctx.fillText("Premi R per ricominciare", screenWidth / 2, (screenHeight / 2 - (screenHeight / 5)) + screenHeight / 5);//+ 50);
 
         // Scritta "Premi M per tornare al menù"
         ctx.font = "20px Arial";
-        ctx.fillText("Premi M per tornare al menù", screenWidth / 2, (screenHeight / 2 - (screenHeight / 5)) + 100);
+        ctx.fillText("Premi M per tornare al menù", screenWidth / 2, (screenHeight / 2 - (screenHeight / 5)) + screenHeight / 10); //+ 100);
     }
 
     // Mostra l'immagine di laurea
@@ -116,7 +116,15 @@ function showGraduationMessage() {
 
     // Mostra l'immagine di laurea 2
     if (graduationImage2.complete) {
-        ctx.drawImage(graduationImage2, screenWidth / 2 - 150, screenHeight / 2 + 80, 285, 320); // Regola le dimensioni e la posizione
+        const imageWidth = 220;
+        const imageHeight = 250;
+    
+        const imageX = (screenWidth / 2) - (imageWidth / 2); // Centra l'immagine orizzontalmente
+        const imageY = screenHeight - imageHeight; // Posiziona il bordo inferiore dell'immagine al bordo inferiore dello schermo
+    
+        ctx.drawImage(graduationImage2, imageX, imageY, imageWidth, imageHeight);
+
+        //ctx.drawImage(graduationImage2, screenWidth / 2 - 150, screenHeight / 2 + 80, 285, 320); // Regola le dimensioni e la posizione
     }
 }
 

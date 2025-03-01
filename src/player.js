@@ -36,11 +36,11 @@ var player = new function() {
             if (!isMobileDevice()) {
                 // Scritta "Premi R per riniziare l'università"
                 ctx.font = "20px Arial";
-                ctx.fillText("Premi R per riniziare l'università", screenWidth / 2, (screenHeight / 2 - (screenHeight / 5)) + 50);
+                ctx.fillText("Premi R per riniziare l'università", screenWidth / 2, (screenHeight / 2 - (screenHeight / 5)) + screenHeight / 5);//+ 50);
 
                 // Scritta "Premi M per tornare al menu"
                 ctx.font = "20px Arial";
-                ctx.fillText("Premi M per tornare al menu", screenWidth / 2, (screenHeight / 2 - (screenHeight / 5)) + 100);
+                ctx.fillText("Premi M per tornare al menu", screenWidth / 2, (screenHeight / 2 - (screenHeight / 5)) + screenHeight / 10); //+ 100);
             }
         }
 
