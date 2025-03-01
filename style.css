@@ -81,10 +81,10 @@ canvas {
 /* Contenitore che include sia il menù che il gioco */
 #gameContainer {
     border: 2px solid #004180;
-    background-image: url(Sprites/background.png);
+    /*background-image: url(Sprites/background.png);
     background-position: center;
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;*/
     position: relative;
     width: 450px; /* Stessa larghezza del canvas */
     height: 700px; /* Stessa altezza del canvas */
@@ -111,6 +111,10 @@ canvas {
     align-items: center;
     text-align: center;
     border-radius: 10px;
+    background-image: url(Sprites/background.png); /* Aggiungi l'immagine di sfondo */
+    background-position: center; /* Centra l'immagine di sfondo */
+    background-size: cover; /* Adatta l'immagine di sfondo alle dimensioni del contenitore */
+    background-repeat: no-repeat; /* Evita la ripetizione dell'immagine */
 }
 
 /* Pulsanti del menù */
@@ -150,5 +154,30 @@ canvas {
     font-family: 'Poppins', sans-serif; /* Font moderno */
     letter-spacing: 2px; /* Spaziatura tra le lettere */
     padding: 20px;
+}
+
+#title2 {
+    font-family: 'VT323', monospace; /* Font pixelato alternativo */
+    font-size: 40px;
+    font-weight: bold; /* Testo in grassetto */
+    text-transform: uppercase; /* Maiuscolo */
+    text-align: center; /* Centra il testo */
+    color: #004180; /* blu */
+    text-shadow: 3px 3px 0px #4CAF50, /* Ombra nera */
+                 5px 5px 5px #4CAF50; /* Ombra sfumata */
+    font-family: 'Poppins', sans-serif; /* Font moderno */
+    letter-spacing: 1px; /* Spaziatura tra le lettere */
+    padding: 20px;
+}
+
+#scritte {
+    font-family: 'VT323', monospace; /* Font pixelato alternativo */
+    font-size: 15px;
+    font-weight: bold; /* Testo in grassetto */
+    text-align: center; /* Centra il testo */
+    color: #004180; /* blu */
+    font-family: 'Poppins', sans-serif; /* Font moderno */
+    letter-spacing: 1px; /* Spaziatura tra le lettere */
+    padding: 10px;
 }
 

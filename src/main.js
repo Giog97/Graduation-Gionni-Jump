@@ -45,8 +45,8 @@ document.getElementById("startButton").addEventListener("click", function() {
 // Gestione del menù 2
 document.getElementById("creditsButton").addEventListener("click", function() {
     document.getElementById("menu").innerHTML = `
-        <h1>Ringraziamenti</h1>
-        <p>Grazie per aver giocato a Graduation Gionni Jump! Un ringraziamento speciale a tutti coloro che hanno supportato lo sviluppo.</p>
+        <h1 id="title2">Ringraziamenti</h1>
+        <p id="scritte">Grazie per aver giocato a Graduation Gionni Jump! Un ringraziamento speciale a tutti coloro che mi sono stati vicini e mi hanno fatto forza durante il mio percorso di studi.</p>
         <button id="backButton">Torna indietro</button>
     `;
 
@@ -86,7 +86,7 @@ var interval = 1000/fps;
 var delta;
 
 // CFU da ottenere per potersi laureare
-var graduationBlock = 10; // Numero di blocchi da superare per laurearsi
+var graduationBlock = 300; // Numero di blocchi da superare per laurearsi
 
 // Funzione per visualizzare il messaggio di laurea
 function showGraduationMessage() {
@@ -396,4 +396,4 @@ function loop() {
     }
 }
 
-loop();
+//loop(); // Questo fa si che il gioco venga avviato automaticamente anche quando il menu è visibile
