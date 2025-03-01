@@ -11,6 +11,10 @@ var ctx = c.getContext("2d");
 var fixedWidth = 450; // Larghezza fissa per il computer // Mod: da 500 
 var fixedHeight = 700; // Altezza fissa per il computer // Mod: da 800 
 
+// Caricamento dell'immagine degli stivali a molla
+var springBootsImage = new Image();
+springBootsImage.src = "Sprites/new_balance_pxArt.png"; // Percorso dell'immagine
+
 // Imposta le dimensioni del canvas in base al dispositivo
 if (isMobileDevice()) {
     // Dimensioni dinamiche per i dispositivi mobili
@@ -46,7 +50,7 @@ document.getElementById("startButton").addEventListener("click", function() {
 document.getElementById("creditsButton").addEventListener("click", function() {
     document.getElementById("menu").innerHTML = `
         <h1 id="title2">Ringraziamenti</h1>
-        <p id="scritte">Grazie per aver giocato a Graduation Gionni Jump! Un ringraziamento speciale a tutti coloro che mi sono stati vicini e mi hanno fatto forza durante il mio percorso di studi.</p>
+        <p id="scritte">Grazie per aver giocato a Graduation Gionni Jump! Un ringraziamento speciale a tutti coloro che mi sono stati vicini e mi hanno sostenuto durante il mio percorso di studi.</p>
         <button id="backButton">Torna indietro</button>
     `;
 

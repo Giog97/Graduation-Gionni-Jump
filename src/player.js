@@ -1,3 +1,6 @@
+var springBootsImage = new Image();
+springBootsImage.src = "Sprites/new_balance_pxArt.png"; // Percorso dell'immagine
+
 var player = new function() {
     this.x = 300;
     this.y = 550;
@@ -63,7 +66,10 @@ var player = new function() {
                 if (this.x >= blocks[i].x - this.width + 15 && this.x <= blocks[i].x + blocks[i].width - 15 &&
                     this.y >= blocks[i].y - this.height && this.y <= blocks[i].y + blocks[i].height - this.height) {
                     if (blocks[i].type === "break") {
-                        blocks[i] = 0;
+                        if (!blocks[i].isBroken) {
+                            this.jump(blocks[i].powerup, blocks[i].type);
+                            blocks[i].isBroken = true; // Imposta il blocco come rotto
+                        }
                     } else if (blocks[i].monster !== 0) {
                         this.jump(blocks[i].powerup, blocks[i].type);
                         blocks[i] = 0;
@@ -141,6 +147,7 @@ var player = new function() {
 
         if (this.springBootsDurability !== 0) {
             if (this.direction === "right") {
+                // posso caricare la mia immagine con le new balance
                 ctx.fillStyle = "blue";
                 ctx.fillRect(this.x + 10, this.y + 66, 15, 10);
                 ctx.fillRect(this.x + 33, this.y + 66, 15, 10);  
@@ -148,6 +155,7 @@ var player = new function() {
                 ctx.fillRect(this.x + 10, this.y + 76, 15, 15);
                 ctx.fillRect(this.x + 33, this.y + 76, 15, 15);
             } else {
+                // posso caricare la mia immagine con le new balance
                 ctx.fillStyle = "blue";
                 ctx.fillRect(this.x + 30, this.y + 66, 15, 10);
                 ctx.fillRect(this.x + 53, this.y + 66, 15, 10);  

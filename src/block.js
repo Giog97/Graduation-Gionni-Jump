@@ -8,8 +8,11 @@ function block() {
     this.monster;
     this.direction = "right";
     this.moveTime = 10;
+    this.isBroken = false; // Aggiungi questa proprietà per tracciare se il blocco è stato rotto
 
     this.draw = function() {
+        if (this.isBroken) return; // Non disegnare il blocco se è stato rotto
+
         if (this.type === "break") {
             ctx.fillStyle = "#876537";
         } else if (this.type === "sideways") {
@@ -28,12 +31,19 @@ function block() {
             ctx.fillStyle = "grey";
             ctx.fillRect(this.x + 35, this.y - 10, 30, 10);
         } else if (this.powerup === "springBoots") {
-            ctx.fillStyle = "blue";
-            ctx.fillRect(this.x + 30, this.y - 25, 15, 10);
-            ctx.fillRect(this.x + 53, this.y - 25, 15, 10);  
-            ctx.fillStyle = "grey";
-            ctx.fillRect(this.x + 30, this.y - 15, 15, 15);
-            ctx.fillRect(this.x + 53, this.y - 15, 15, 15);
+            //ctx.fillStyle = "blue";
+            //ctx.fillRect(this.x + 30, this.y - 25, 15, 10);
+            //ctx.fillRect(this.x + 53, this.y - 25, 15, 10);  
+            //ctx.fillStyle = "grey";
+            //ctx.fillRect(this.x + 30, this.y - 15, 15, 15);
+            //ctx.fillRect(this.x + 53, this.y - 15, 15, 15);
+            if (springBootsImage.complete) {
+                const imageWidth = 40; // Larghezza dell'immagine
+                const imageHeight = 36; // Altezza dell'immagine
+                const imageX = this.x + 30; // Posizione X rispetto al blocco
+                const imageY = this.y - 36; // Posizione Y rispetto al blocco
+                ctx.drawImage(springBootsImage, imageX, imageY, imageWidth, imageHeight);
+            }
         }
     }
 
