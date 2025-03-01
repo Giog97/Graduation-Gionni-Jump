@@ -221,7 +221,7 @@ function drawGoalLine() {
     // Calcola la posizione della linea dell'obiettivo
     if (goalLineY === -1 && yDistanceTravelled >= graduationBlock * 100 * 0.7) {
         // Fai apparire la linea quando il giocatore ha superato il 70% del percorso
-        goalLineY = blocks[0].y - (graduationBlock * 100); // Posizione iniziale della linea
+        goalLineY = blocks[0].y - (graduationBlock * 100 *0.3); // Posizione iniziale della linea NB 0.3 aggiunto dopo
     }
 
     // Se la linea è visibile, disegnala
