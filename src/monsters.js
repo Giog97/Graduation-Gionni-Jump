@@ -14,8 +14,8 @@ var smallRed = new function() {
     this.img.src = "Sprites/Monsters/smallRed.png";
     this.xDif = 10;
     this.yDif = -30;
-    this.width = 70;
-    this.height = 21;
+    this.width = 60;
+    this.height = 60;
 
     this.draw = function(blockX, blockY) {
         ctx.drawImage(this.img, blockX + this.xDif, blockY + this.yDif, this.width, this.height);
