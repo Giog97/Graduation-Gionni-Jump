@@ -103,7 +103,7 @@ var interval = 1000/fps;
 var delta;
 
 // CFU da ottenere per potersi laureare
-var graduationBlock = 10; // Numero di blocchi da superare per laurearsi
+var graduationBlock = 300; // Numero di blocchi da superare per laurearsi (300 per 300CFU)
 
 // Funzione per visualizzare il messaggio di laurea
 function showGraduationMessage() {

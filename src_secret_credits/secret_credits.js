@@ -2,7 +2,7 @@
 const specialNames = {
     "Gionni": "Grazie, Gionni! Sei il creatore di questo gioco e senza di te nulla di tutto questo sarebbe stato possibile. Sei la parte più folle di me e di te ne ho bisogno come il pane.",
     "Giog97": "Grazie, Giog97! La parte gamer/nerd che è in me è quella che ha permesso di svagarmi e che mi ha dato la testardaggine per affrontare ogni nuova sfida.",
-    "Giovanni Stefanini": "Giova! Sei un grande, fatti forza perchè il successo non è definitivo, il fallimento non è fatale: è il coraggio di continuare che conta!",
+    "Giovanni Stefanini": "Giova! Sei un grande, fatti forza perchè il successo non è definitivo, il fallimento non è fatale. È il coraggio di continuare che conta!",
 };
 
 // TODO aggiungi qui i nomi e cognomi con i ringraziamenti personalizzati
