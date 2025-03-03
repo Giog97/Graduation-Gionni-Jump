@@ -1,6 +1,13 @@
 // Resetta il localStorage per debug (rimuovi questa riga in produzione)
 //localStorage.removeItem("secretCreditsUnlocked"); // Serve per essere sicuro che il pulsante Ringraziamenti segreti non sarà visibile
 
+// Serve per avere webapp
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js").then(() => {
+      console.log("Service Worker registrato!");
+    });
+  }  
+
 // Funzione per rilevare se il dispositivo è mobile
 window.isMobileDevice = function() {
     return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
