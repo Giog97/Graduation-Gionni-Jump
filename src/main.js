@@ -1,3 +1,6 @@
+// Resetta il localStorage per debug (rimuovi questa riga in produzione)
+//localStorage.removeItem("secretCreditsUnlocked"); // Serve per essere sicuro che il pulsante Ringraziamenti segreti non sarà visibile
+
 // Funzione per rilevare se il dispositivo è mobile
 window.isMobileDevice = function() {
     return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
@@ -40,24 +43,34 @@ if (isMobileDevice()) {
     });
 }
 
-// Gestione del menù
+
+// Gestione del menù principale
 document.getElementById("startButton").addEventListener("click", function() {
     document.getElementById("menu").style.display = "none"; // Nasconde il menù
     document.getElementById("gameCanvas").style.display = "block"; // Mostra il gioco
+    resetGame(); // Reinizializza il gioco
     loop(); // Avvia il gioco
 });
-// Gestione del menù 2
-document.getElementById("creditsButton").addEventListener("click", function() {
-    document.getElementById("menu").innerHTML = `
-        <h1 id="title2">Ringraziamenti</h1>
-        <p id="scritte">Grazie per aver giocato a Graduation Gionni Jump! Un ringraziamento speciale a tutti coloro che mi sono stati vicini e mi hanno sostenuto durante il mio percorso di studi.</p>
-        <button id="backButton">Torna indietro</button>
-    `;
 
-    document.getElementById("backButton").addEventListener("click", function() {
-        location.reload(); // Ricarica la pagina per tornare al menù
-    });
+// Gestione del pulsante "Ringraziamenti"
+document.getElementById("creditsButton").addEventListener("click", function() {
+    document.getElementById("mainMenu").style.display = "none"; // Nasconde il menù principale
+    document.getElementById("creditsMenu").style.display = "flex"; // Mostra la sezione ringraziamenti
 });
+
+// Gestione del pulsante "Torna indietro"
+document.getElementById("backButton").addEventListener("click", function() {
+    document.getElementById("creditsMenu").style.display = "none"; // Nasconde la sezione ringraziamenti
+    document.getElementById("mainMenu").style.display = "flex"; // Mostra il menù principale
+});
+
+// Nascondi il pulsante "Ringraziamenti segreti" all'inizio
+document.getElementById("secretCreditsButton").style.display = "none";
+
+// Mostra il pulsante "Ringraziamenti segreti" solo se è stato sbloccato
+if (localStorage.getItem("secretCreditsUnlocked") === "true") {
+    document.getElementById("secretCreditsButton").style.display = "block";
+}
 
 window.addEventListener('keydown',this.keydown,false);
 window.addEventListener('keyup',this.keyup,false);
@@ -90,7 +103,7 @@ var interval = 1000/fps;
 var delta;
 
 // CFU da ottenere per potersi laureare
-var graduationBlock = 300; // Numero di blocchi da superare per laurearsi
+var graduationBlock = 10; // Numero di blocchi da superare per laurearsi
 
 // Funzione per visualizzare il messaggio di laurea
 function showGraduationMessage() {
@@ -130,19 +143,25 @@ function showGraduationMessage() {
 
         //ctx.drawImage(graduationImage2, screenWidth / 2 - 150, screenHeight / 2 + 80, 285, 320); // Regola le dimensioni e la posizione
     }
+
+    // Mostra il pulsante "Ringraziamenti segreti" nel menù
+    document.getElementById("secretCreditsButton").style.display = "block";
+
+    // Salva lo stato del pulsante nel localStorage
+    localStorage.setItem("secretCreditsUnlocked", "true");
 }
+
+// Controlla se il pulsante "Ringraziamenti segreti" è stato sbloccato quando la pagina viene caricata
+window.onload = function() {
+    if (localStorage.getItem("secretCreditsUnlocked") === "true") {
+        document.getElementById("secretCreditsButton").style.display = "block";
+    }
+};
 
 // Funzione per tornare al menù
 function returnToMenu() {
     // Resetta le variabili del gioco
-    blocks = [];
-    lowestBlock = 0;
-    difficulty = 0;
-    score = 0;
-    yDistanceTravelled = 0;
-    player.springBootsDurability = 0;
-    goalLineY = -1;
-    dead = false;
+    resetGame();
 
     // Nasconde il canvas e mostra il menù
     document.getElementById("gameCanvas").style.display = "none";
@@ -150,8 +169,10 @@ function returnToMenu() {
     document.getElementById("restartButton").style.display = "none"; // Nasconde il bottone di riavvio
     document.getElementById("menuButton").style.display = "none"; // Nasconde il bottone del menù
 
-    // Ricarica il menù iniziale
-    location.reload(); // Ricarica la pagina per tornare al menù iniziale
+    // Mostra il pulsante "Ringraziamenti segreti" se è stato sbloccato
+    if (localStorage.getItem("secretCreditsUnlocked") === "true") {
+        document.getElementById("secretCreditsButton").style.display = "block";
+    }
 }
 
 function keydown(e) {
@@ -255,30 +276,15 @@ var restartButton = document.getElementById("restartButton");
 
 // Aggiungi un gestore di eventi al bottone
 restartButton.addEventListener("click", function () {
-    // Esegui la stessa logica del tasto "R"
-    blocks = [];
-    lowestBlock = 0;
-    difficulty = 0;
-    score = 0;
-    yDistanceTravelled = 0;
-    player.springBootsDurability = 0;
+    resetGame(); // Reinizializza il gioco
+    dead = false; // Imposta lo stato del giocatore come "vivo"
+    loop(); // Avvia il gioco
+});
 
-    // Resetta la posizione della linea dell'obiettivo
-    goalLineY = -1;
-
-    blocks.push(new block);
-    blocks[0].x = 300;
-    blocks[0].y = 650;
-    blocks[0].monster = 0;
-    blocks[0].type = 0;
-    blocks[0].powerup = 0;
-
-    blockSpawner();
-
-    player.x = 300;
-    player.y = 550;
-
-    dead = false;
+// Aggiungi un gestore di eventi al pulsante "Ringraziamenti segreti"
+document.getElementById("secretCreditsButton").addEventListener("click", function() {
+    // Reindirizza alla pagina dei ringraziamenti segreti
+    window.location.href = "secret_credits.html";
 });
 
 // Seleziona il bottone per tornare al menù
@@ -340,6 +346,34 @@ blocks[0].type = 0;
 blocks[0].powerup = 0;
 
 blockSpawner();
+
+// Funzione per reinizializzare il gioco
+function resetGame() {
+    // Resetta tutte le variabili del gioco
+    blocks = [];
+    lowestBlock = 0;
+    difficulty = 0;
+    score = 0;
+    yDistanceTravelled = 0;
+    player.springBootsDurability = 0;
+    goalLineY = -1;
+    dead = false;
+
+    // Resetta la posizione del giocatore
+    player.x = 300;
+    player.y = 550;
+
+    // Ricrea il primo blocco
+    blocks.push(new block);
+    blocks[0].x = 300;
+    blocks[0].y = 650;
+    blocks[0].monster = 0;
+    blocks[0].type = 0;
+    blocks[0].powerup = 0;
+
+    // Avvia lo spawner dei blocchi
+    blockSpawner();
+}
 
 // Modifica la funzione loop per disegnare la linea dell'obiettivo
 function loop() {

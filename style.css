@@ -130,6 +130,22 @@ canvas {
     cursor: pointer;
 }
 
+#mainMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#creditsMenu {
+    display: none; /* Nascondi la sezione ringraziamenti all'inizio */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 /* Stili per i pulsanti */
 #startButton {
     border: 1px solid #004180;
@@ -140,6 +156,13 @@ canvas {
 #creditsButton {
     border: 1px solid #004180;
     background-color: #2196F3;
+    color: white;
+}
+
+#secretCreditsButton {
+    display: none; /* Nascondi il bottone di default */
+    border: 1px solid #004180;
+    background-color: #FF5722; /* Colore diverso per distinguerlo */
     color: white;
 }
 

@@ -11,21 +11,7 @@
                 display: block;
                 margin: 0 auto; 
             }
-            /* Stile per il bottone di riavvio */
-            #restartButton {
-                display: none; /* Nascondi il bottone di default */
-                position: fixed;
-                bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                padding: 10px 20px;
-                font-size: 16px;
-                background-color: #4CAF50;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
+            
         </style>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
@@ -34,10 +20,21 @@
         <div id="gameContainer">
             <!-- Menù iniziale sopra il canvas -->
             <div id="menu">
-                <h1 id="title">Graduation Gionni Jump</h1>
-                <p id="scritte">Salta sulle piattaforme e acquisici 300 CFU per raggiungere la laurea! Evita i fallimenti e raccogli i potenziamenti.</p>
-                <button id="startButton">Inizia il gioco</button>
-                <button id="creditsButton">Ringraziamenti</button>
+                <!-- Menù principale -->
+                <div id="mainMenu">
+                    <h1 id="title">Graduation Gionni Jump</h1>
+                    <p id="scritte">Salta sulle piattaforme e acquisici 300 CFU per raggiungere la laurea! Evita i fallimenti e raccogli i potenziamenti.</p>
+                    <button id="startButton">Inizia il gioco</button>
+                    <button id="creditsButton">Ringraziamenti</button>
+                    <button id="secretCreditsButton" style="display: none;">Ringraziamenti segreti</button>
+                </div>
+            
+                <!-- Sezione ringraziamenti -->
+                <div id="creditsMenu" style="display: none;">
+                    <h1 id="title2">Ringraziamenti</h1>
+                    <p id="scritte">Grazie per aver giocato a Graduation Gionni Jump! Un ringraziamento speciale a tutti coloro che mi sono stati vicini e mi hanno sostenuto durante il mio percorso di studi.</p>
+                    <button id="backButton">Torna indietro</button>
+                </div>
             </div>
 
             <!-- Canvas per il gioco -->
