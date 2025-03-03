@@ -215,25 +215,25 @@ function showScore() {
 
 // Variabile globale per memorizzare la posizione della linea dell'obiettivo
 var goalLineY = -1; // Inizialmente la linea non è visibile
+var goalLineRED = 0; // Inizialmente la linea non è visibile
 
 // Funzione per disegnare la linea dell'obiettivo
 function drawGoalLine() {
-    // Calcola la posizione della linea dell'obiettivo
+    // Se la linea dell'obiettivo non è stata ancora impostata e il giocatore ha raggiunto il punteggio necessario
     if (goalLineY === -1 && yDistanceTravelled >= graduationBlock * 100 * 0.7) {
-        // Fai apparire la linea quando il giocatore ha superato il 70% del percorso
-        goalLineY = blocks[0].y - (graduationBlock * 100 *0.3); // Posizione iniziale della linea NB 0.3 aggiunto dopo
+        goalLineY = blocks[0].y - (graduationBlock * 100); // Imposta la linea come posizione fissa
     }
 
     // Se la linea è visibile, disegnala
     if (goalLineY !== -1) {
-        ctx.strokeStyle = "red"; // Colore della linea
-        ctx.lineWidth = 3; // Spessore della linea
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 3;
         ctx.beginPath();
-        ctx.moveTo(0, goalLineY); // Inizia la linea a sinistra
-        ctx.lineTo(screenWidth, goalLineY); // Termina la linea a destra
+        ctx.moveTo(0, goalLineY);
+        ctx.lineTo(screenWidth, goalLineY);
         ctx.stroke();
 
-        // Aggiungi un'etichetta di testo sopra la linea
+        // Testo sopra la linea
         ctx.font = "20px Arial";
         ctx.fillStyle = "red";
         ctx.textAlign = "center";
