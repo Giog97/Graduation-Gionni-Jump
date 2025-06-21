@@ -54,37 +54,6 @@ canvas {
     line-height: 22px; /* Mantiene il testo centrato verticalmente */
 }
 
-/* Modifica solo la posizione su mobile */
-@media only screen and (max-width: 768px) {
-    #restartButton {
-        border: 1px solid #004180;
-        position: absolute;
-        top: 45%; /* Posiziona il bottone sotto il testo */
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    #menuButton {
-        border: 1px solid #004180;
-        position: absolute;
-        top: 55%; /* Posiziona il bottone sotto il bottone di riavvio */
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    #gameContainer {
-        width: 100%; /* Larghezza al 100% dello schermo */
-        height: 100%; /* Altezza al 100% dello schermo */
-        background-size: contain; /* Mostra l'intera immagine senza ritagli */
-        box-sizing: border-box; /* Importante per includere il bordo nel calcolo delle dimensioni */
-    }
-
-    #gameCanvas {
-        width: 100%;
-        height: 100%;
-    }
-}
-
 /* Stili per il menu */
 /* Contenitore che include sia il menù che il gioco */
 #gameContainer {
@@ -104,6 +73,37 @@ canvas {
     width: 100%;
     height: 100%;
     display: none; /* Nasconde il gioco all'inizio */
+}
+
+/* Modifica solo la posizione su mobile */
+@media only screen and (max-width: 768px) {
+    #restartButton {
+        border: 1px solid #004180;
+        position: absolute;
+        top: 45%; /* Posiziona il bottone sotto il testo */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #menuButton {
+        border: 1px solid #004180;
+        position: absolute;
+        top: 55%; /* Posiziona il bottone sotto il bottone di riavvio */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #gameContainer {
+        width: 100vw; /* Larghezza al 100% dello schermo */
+        height: 100vh; /* Altezza al 100% dello schermo */
+        background-size: contain; /* Mostra l'intera immagine senza ritagli */
+        box-sizing: border-box; /* Importante per includere il bordo nel calcolo delle dimensioni */
+    }
+
+    #gameCanvas {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 /* Il menù deve stare dentro il contenitore */
