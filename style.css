@@ -54,27 +54,6 @@ canvas {
     line-height: 22px; /* Mantiene il testo centrato verticalmente */
 }
 
-/* Stili per il menu */
-/* Contenitore che include sia il menù che il gioco */
-#gameContainer {
-    border: 2px solid #004180;
-    /*background-image: url(Sprites/background.png);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;*/
-    position: relative;
-    width: 450px; /* Stessa larghezza del canvas */
-    height: 700px; /* Stessa altezza del canvas */
-    margin: 0 auto; /* Centra il contenitore */
-}
-
-/* Il canvas prende l'intera area del contenitore */
-#gameCanvas {
-    width: 100%;
-    height: 100%;
-    display: none; /* Nasconde il gioco all'inizio */
-}
-
 /* Modifica solo la posizione su mobile */
 @media only screen and (max-width: 768px) {
     #restartButton {
@@ -94,8 +73,8 @@ canvas {
     }
 
     #gameContainer {
-        width: 100vw; /* Larghezza al 100% dello schermo */
-        height: 100vh; /* Altezza al 100% dello schermo */
+        width: 100vw !important; /* Larghezza al 100% dello schermo */
+        height: 100vh !important; /* Altezza al 100% dello schermo */
         background-size: contain; /* Mostra l'intera immagine senza ritagli */
         box-sizing: border-box; /* Importante per includere il bordo nel calcolo delle dimensioni */
     }
@@ -104,6 +83,27 @@ canvas {
         width: 100%;
         height: 100%;
     }
+}
+
+/* Stili per il menu */
+/* Contenitore che include sia il menù che il gioco */
+#gameContainer {
+    border: 2px solid #004180;
+    /*background-image: url(Sprites/background.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;*/
+    position: relative;
+    width: 450px; /* Stessa larghezza del canvas */
+    height: 700px; /* Stessa altezza del canvas */
+    margin: 0 auto; /* Centra il contenitore */
+}
+
+/* Il canvas prende l'intera area del contenitore */
+#gameCanvas {
+    width: 100%;
+    height: 100%;
+    display: none; /* Nasconde il gioco all'inizio */
 }
 
 /* Il menù deve stare dentro il contenitore */
