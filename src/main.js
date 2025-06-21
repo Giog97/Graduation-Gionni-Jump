@@ -25,6 +25,9 @@ var fixedHeight = 700; // Altezza fissa per il computer // Mod: da 800
 var springBootsImage = new Image();
 springBootsImage.src = "Sprites/new_balance_pxArt.png"; // Percorso dell'immagine
 
+// Serve per capire se il gioco sta andando oppure siamo nei menù
+var gameRunning = false;
+
 // Imposta le dimensioni del canvas in base al dispositivo
 if (isMobileDevice()) {
     // Dimensioni dinamiche per i dispositivi mobili
@@ -55,6 +58,7 @@ if (isMobileDevice()) {
 document.getElementById("startButton").addEventListener("click", function() {
     document.getElementById("menu").style.display = "none"; // Nasconde il menù
     document.getElementById("gameCanvas").style.display = "block"; // Mostra il gioco
+    gameRunning = true; // Imposto a true la variabile che mi dice che sto giocando
     resetGame(); // Reinizializza il gioco
     loop(); // Avvia il gioco
 });
@@ -167,6 +171,8 @@ window.onload = function() {
 
 // Funzione per tornare al menù
 function returnToMenu() {
+    gameRunning = false; // ❗ Ferma il loop
+
     // Resetta le variabili del gioco
     resetGame();
 
@@ -283,6 +289,7 @@ var restartButton = document.getElementById("restartButton");
 
 // Aggiungi un gestore di eventi al bottone
 restartButton.addEventListener("click", function () {
+    gameRunning = true; // ✅ Riavvia il loop
     resetGame(); // Reinizializza il gioco
     dead = false; // Imposta lo stato del giocatore come "vivo"
     loop(); // Avvia il gioco
@@ -384,6 +391,8 @@ function resetGame() {
 
 // Modifica la funzione loop per disegnare la linea dell'obiettivo
 function loop() {
+    if (!gameRunning) return;
+
     requestAnimationFrame(loop);
 
     // Questo imposta il FPS a 60
