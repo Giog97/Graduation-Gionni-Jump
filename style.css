@@ -118,12 +118,39 @@ canvas {
     justify-content: center;
     align-items: center;
     text-align: center;
+
     border-radius: 10px;
-    background-image: url(Sprites/background4.png); /* Aggiungi l'immagine di sfondo */
-    background-position: center; /* Centra l'immagine di sfondo */
-    background-size: cover; /* Adatta l'immagine di sfondo alle dimensioni del contenitore */
-    background-repeat: no-repeat; /* Evita la ripetizione dell'immagine */
+    background-image: url(Sprites/background5.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    /* Crea un nuovo contesto di stacking */
+    position: relative;
 }
+
+#menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: url(Sprites/Logo_unifi.png) no-repeat center / contain;
+    opacity: 0.3;
+
+    /* Questo mette l'overlay DIETRO al contenuto */
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Qualsiasi elemento interno a #menu deve stare sopra l'overlay */
+#menu * {
+    position: relative;
+    z-index: 1;
+}
+
 
 /* Pulsanti del menù */
 #menu button {
