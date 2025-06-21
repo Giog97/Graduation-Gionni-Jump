@@ -389,6 +389,33 @@ function resetGame() {
     blockSpawner();
 }
 
+// Funzione per disegnare correttamente il background
+function drawBackground() {
+    var backgroundImage = new Image();
+    backgroundImage.src = "Sprites/background.png";
+    const img = backgroundImage;
+    const canvasRatio = screenWidth / screenHeight;
+    const imgRatio = img.width / img.height;
+
+    let drawWidth, drawHeight, offsetX, offsetY;
+
+    if (canvasRatio > imgRatio) {
+        // Il canvas è più largo dell'immagine
+        drawWidth = screenWidth;
+        drawHeight = screenWidth / imgRatio;
+        offsetX = 0;
+        offsetY = (screenHeight - drawHeight) / 2;
+    } else {
+        // Il canvas è più alto dell'immagine
+        drawHeight = screenHeight;
+        drawWidth = screenHeight * imgRatio;
+        offsetY = 0;
+        offsetX = (screenWidth - drawWidth) / 2;
+    }
+
+    ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+}
+
 // Modifica la funzione loop per disegnare la linea dell'obiettivo
 function loop() {
     if (!gameRunning) return;
@@ -400,9 +427,10 @@ function loop() {
     delta = now - then;
 
     if (delta > interval) {
-        var backgroundImage = new Image();
-        backgroundImage.src = "Sprites/background.png";
-        ctx.drawImage(backgroundImage, 0, 0, screenWidth, screenHeight);
+        //var backgroundImage = new Image();
+        //backgroundImage.src = "Sprites/background.png";
+        //ctx.drawImage(backgroundImage, 0, 0, screenWidth, screenHeight);
+        drawBackground();
 
         // Controlla se il giocatore ha superato i 300 blocchi
         if (yDistanceTravelled >= graduationBlock * 100) {
