@@ -77,6 +77,11 @@ canvas {
         height: 100vh; /* Altezza al 100% dello schermo */
         background-size: contain; /* Mostra l'intera immagine senza ritagli */
     }
+
+    #gameCanvas {
+        width: 100%;
+        height: 100vh;
+    }
 }
 
 /* Stili per il menu */
