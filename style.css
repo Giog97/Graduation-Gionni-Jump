@@ -73,8 +73,8 @@ canvas {
     }
 
     #gameContainer {
-        width: 100vw !important; /* Larghezza al 100% dello schermo */
-        height: 100vh !important; /* Altezza al 100% dello schermo */
+        width: 100dvw !important; /* Larghezza al 100% dello schermo */
+        height: 100dvh !important; /* Altezza al 100% dello schermo */
         background-size: contain; /* Mostra l'intera immagine senza ritagli */
         box-sizing: border-box; /* Importante per includere il bordo nel calcolo delle dimensioni */
     }
