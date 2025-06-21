@@ -73,7 +73,7 @@ canvas {
     }
 
     #gameContainer {
-        width: 100dvw !important; /* Larghezza al 100% dello schermo */
+        width: 100vw !important; /* Larghezza al 100% dello schermo */
         height: 100dvh !important; /* Altezza al 100% dello schermo */
         background-size: contain; /* Mostra l'intera immagine senza ritagli */
         box-sizing: border-box; /* Importante per includere il bordo nel calcolo delle dimensioni */
@@ -119,7 +119,7 @@ canvas {
     align-items: center;
     text-align: center;
     border-radius: 10px;
-    background-image: url(Sprites/background.png); /* Aggiungi l'immagine di sfondo */
+    background-image: url(Sprites/background4.png); /* Aggiungi l'immagine di sfondo */
     background-position: center; /* Centra l'immagine di sfondo */
     background-size: cover; /* Adatta l'immagine di sfondo alle dimensioni del contenitore */
     background-repeat: no-repeat; /* Evita la ripetizione dell'immagine */
