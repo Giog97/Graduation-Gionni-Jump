@@ -392,7 +392,7 @@ function resetGame() {
 // Funzione per disegnare correttamente il background
 function drawBackground() {
     var backgroundImage = new Image();
-    backgroundImage.src = "Sprites/background5.png";
+    backgroundImage.src = "Sprites/background3.png";
     const img = backgroundImage;
     const canvasRatio = screenWidth / screenHeight;
     const imgRatio = img.width / img.height;
